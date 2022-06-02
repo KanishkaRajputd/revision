@@ -1,0 +1,197 @@
+body{
+    background-color: rgb(110, 105, 105);
+}
+.nav{
+background-color: rgb(37, 37, 94);
+height: 350px;
+border: 2px solid darkblue;
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+color: rgb(166, 166, 235);
+
+
+}
+.navbar{
+height:60px;
+border:2px solid none;
+background-color: rgb(37, 37, 94);
+display :grid;
+grid-template-columns: 10% 8% 10% 40% 3% 5% 9% 5% 5%;  
+color: white;
+font-weight: bold;
+font-family: 'Times New Roman', Times, serif;
+position: fixed; /* Set the navbar to fixed position */
+top: 0; 
+width: 100%; 
+left: 0;
+/* overflow: hidden; */
+/* margin-bottom: 200px; */
+
+
+}
+.navbar>div{
+margin-top: 10px;
+}
+.navbar >div:nth-child(1)>img{
+height: 40px;
+margin-left: 20px;
+flex: 1;
+}
+
+.box{
+background-color: lightgreen;
+height: 17px;
+color:white;
+font-weight: bold;
+gap: 3px;
+text-align: center;
+padding:10px 10px 10px 10px;
+display: flex;
+
+
+
+}
+.box>img{
+height: 20px;
+width: 20px;
+}
+.input>input
+{
+background-color: rgb(107, 107, 151);
+font-size: 15px;
+color: antiquewhite;
+font-weight: bold;
+width: 100%;
+height: 40px;
+border: 2px solid none;
+}
+
+.box1{
+border:2px solid none;
+height: 17px;
+color:white;
+font-weight: bolder;
+gap: 3px;
+text-align: center;
+padding:10px 10px 10px 10px;
+background-color: blue;
+
+}
+.sign{
+padding: 10px 0px;
+border: 1px solid none;
+margin-left: 7px;
+}
+.gridboxs{
+font-size: 12px;
+gap: 20px;
+display: grid;
+grid-template-columns: 15% 9% 9% 9% 9% 9% 9% 9% 9% ;
+justify-content: space-around;
+grid-template-rows: 150px;
+margin-left: 5%;
+margin-right:5% ;
+margin-top: 30px;
+}
+.gridboxs>div{
+border: 2px solid none;
+display: grid;
+grid-template-rows: 55% 42%;
+font-weight: bolder;
+color: white;
+border-radius: 5px;
+
+}
+.gridboxs>div>div{
+border: 1px solid none;
+}
+.gridboxs>div:nth-child(1)>div:nth-child(1){
+background-image: url(../image/gp8qpkmn.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(1)>div:nth-child(2){
+background-color: coral;
+}
+.gridboxs>div:nth-child(2)>div:nth-child(1){
+background-image: url(../image/lq0u4dlz.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(2)>div:nth-child(2){
+background-color: rgb(189, 181, 181);
+} 
+.gridboxs>div:nth-child(3)>div:nth-child(1){
+background-image: url(../image/tqw1sf5v.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(3)>div:nth-child(2){
+background-color: green;
+}
+
+.gridboxs>div:nth-child(4)>div:nth-child(1){
+background-image: url(../image/5oxdiiee.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(4)>div:nth-child(2){
+background-color: green;
+}
+.gridboxs>div:nth-child(5)>div:nth-child(1){
+background-image: url(../image/yh9vrl7q.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(5)>div:nth-child(2){
+background-color: lightblue;
+}
+.gridboxs>div:nth-child(6)>div:nth-child(1){
+background-image: url(../image/psuozz9z.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(6)>div:nth-child(2){
+background-color:rgb(228, 119, 228);
+}
+.gridboxs>div:nth-child(7)>div:nth-child(1){
+background-image: url(../image/d3lgbpdl.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(7)>div:nth-child(2){
+background-color: rgb(93, 93, 170);
+}
+.gridboxs>div:nth-child(8)>div:nth-child(1){
+background-image: url(../image/pso2f2ut.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+.gridboxs>div:nth-child(8)>div:nth-child(2){
+background-color: purple;
+}
+.gridboxs>div:nth-child(9)>div:nth-child(1){
+background-image: url(../image/v64jhgk1.bmp);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+}
+
+.gridboxs>div:nth-child(9)>div:nth-child(2){
+background-color: blueviolet;
+}
+.lowerbox{
+display:grid;
+grid-template-columns: 20% 20% 20% 20%;
+grid-gap:10px;
+margin-left: 13%;
+
+}
