@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginState } from "../Redux-/Login/action";
 
 export const Login=()=>{
 const style1={
@@ -14,6 +16,8 @@ const [Form,setForm]=useState({
      passward:"",
 })
 const navigate=useNavigate();
+const state=useSelector((s)=>s.state.state);
+const dispatch=useDispatch();
 function handleChange(e){
      const {id,value}=e.target;
      setForm({
@@ -37,6 +41,7 @@ let arr=[];
  if(data1.length!==0){
       arr.push(data1[0]._id);
       localStorage.setItem("user",JSON.stringify(arr));
+      dispatch(loginState(true));
      navigate("/",{replace:true});
 }
  else{

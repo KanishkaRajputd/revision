@@ -2,16 +2,13 @@ import { useEffect, useState } from "react"
 
 export const Product=()=>{
     const [Options,setOption]=useState([]);
-    const [Form ,setForm]=useState({
-      name:"",
-     image:"",
-     price:"",
-     color:[],
-     size:[],
-     categories:[],
-     brandId:"",
-
-    })
+    const [color,setColor]=useState("");
+    const [categories,setCate]=useState("");
+    const [size,setSize]=useState("");
+    const [name,setName]=useState("");
+    const [brandId,setBrandId]=useState("");
+    const [price,setPrice]=useState(0);
+    const [image,setImage]=useState("");
     
 
     useEffect(()=>{
@@ -22,7 +19,7 @@ async function getData(){
 
     const data=await fetch("http://localhost:5000/brands").then((d)=>d.json());
     setOption(data);
-    console.log(data);
+
        
 }
 
@@ -34,30 +31,51 @@ async function getData(){
     }
     
     function handleChange(e){
-        const {id,value}=e.target;
-        setForm({
-            ...Form,
-            [id]:value
-        })
+        if(e.target.id=="name"){
+            setName(e.target.value)
+        }
+        if(e.target.id=="image"){
+            setImage(e.target.value)
+        }
+    if(e.target.id=="price"){
+         setPrice(e.target.value);
+    }if(e.target.id=="categories")
+    {
+        setCate(e.target.value);
     }
-  function handleSubmit(e){
-    e.preventDefault();
+    if(e.target.id=="size"){
+        setSize(e.target.value);
+    } if(e.target.id=="brandId"){
+        setBrandId(e.target.value);
+    }if(e.target.id=="color"){
+        setColor(e.target.value);
+    }
+    }
+  function handleSubmit(){
+
     fetch("http://localhost:5000/products",{
         method:"POST",
         headers:{
             "content-type":"application/json"
         },
-        body:JSON.stringify(Form)
+        body:JSON.stringify({
+        name:name,
+        image:image,
+        price:price,
+        color:color.split(","),
+        size:size.split(","),
+        categories:categories.split(","),
+        brandId:brandId
+        })
 
-    }).then((d)=>console.log(d));
-
+    })
     
   }
 
     
     return (<div>
     
-         <form onSubmit={handleSubmit}>
+     
          <input id="name" onChange={handleChange} style={style1} type="text" placeholder="Name"/>
          <br/>
          <input id="image" onChange={handleChange} style={style1} type ="text" placeholder="Image"/>
@@ -77,8 +95,8 @@ async function getData(){
              ))}
          </select>
          <br/>
-        <input style={style1} type="submit" value="Submit"/>    
-         </form>
+       <button onClick={handleSubmit}>Submit</button>   
+   
     
     
     </div>)

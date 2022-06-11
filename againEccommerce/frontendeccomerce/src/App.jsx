@@ -10,13 +10,14 @@ import { Signup } from './components/signup';
 import { useNavigate,Link } from 'react-router-dom';
 import { Reviews } from './components/reviews';
 import { Home } from './components/Home';
+import { Navbar } from './components/navbar';
+import { Edit } from './components/edit';
 
 function App() {
  
   return (
     <div className="App">
-   
-
+<Navbar/>
 <Routes>
 <Route path='/' element={<Home/>}></Route>
 <Route path='/login' element={<Login/>}></Route>
@@ -25,6 +26,7 @@ function App() {
 <Route path='/address' element={<Address/>}></Route>
 <Route path='/signup' element={<Signup/>}></Route>
 <Route path='/reviews' element={<Reviews/>}></Route>
+<Route path='/edit' element={<Edit/>}></Route>
 </Routes>
 
 

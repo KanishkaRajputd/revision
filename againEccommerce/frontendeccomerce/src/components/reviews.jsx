@@ -26,7 +26,8 @@ export const Reviews=()=>{
     }
   function handleSubmit(e){
     e.preventDefault();
-    fetch("http://localhost:5000/reviews",{
+    const productId=JSON.parse(localStorage.get("product"));
+    fetch(`http://localhost:5000/products/${productId}/reviews`,{
         method:"POST",
         headers:{
             "content-type":"application/json"

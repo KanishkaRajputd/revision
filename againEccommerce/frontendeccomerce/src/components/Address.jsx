@@ -1,4 +1,6 @@
 import { useEffect,useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 export const Address=()=>{
     const style1={
     
@@ -7,7 +9,9 @@ export const Address=()=>{
     width:"200px",
      margin:"10px"
     }
-
+    const state=useSelector((s)=>s.state.state);
+    
+const navigate=useNavigate();
     const [Form,setForm]=useState({
          state:"",
          city:"",
@@ -27,8 +31,11 @@ export const Address=()=>{
     
     function handleSubmit(e){
      e.preventDefault(); 
+
+
+     if(state){
          const userId=JSON.parse(localStorage.getItem("user"));
-         console.log(userId);
+        
         
      fetch(`http://localhost:5000/users/${userId}/address`,{
           method:"POST",
@@ -36,8 +43,11 @@ export const Address=()=>{
                "content-type":"application/json"
           },
           body:JSON.stringify(Form)
-     }).then(d=>d.json).then(d=>console.log(d));
-
+     });
+     }else{
+          alert("login first")
+     navigate("/login");
+     }
 
     }
     return (<div>
