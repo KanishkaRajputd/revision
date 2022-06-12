@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const Reviews=()=>{
+    const navigate=useNavigate();
     const style1={
     
         height:"40px",
@@ -11,7 +13,7 @@ export const Reviews=()=>{
 
     const user=JSON.parse(localStorage.getItem("user"));
     const [Form,setForm]=useState({
-        userID:user,
+        userId:user,
         description:"",
         rating:""
 
@@ -19,14 +21,21 @@ export const Reviews=()=>{
     
     function handleChange(e){
         const {id,value}=e.target;
+        
         setForm({
             ...Form,
             [id]:value
         })
+        if(Form.userId==""){
+            alert("login first");
+            navigate("/login",{replace:true})
+        }
+        
     }
   function handleSubmit(e){
     e.preventDefault();
-    const productId=JSON.parse(localStorage.get("product"));
+    const productId=JSON.parse(localStorage.getItem("product"));
+
     fetch(`http://localhost:5000/products/${productId}/reviews`,{
         method:"POST",
         headers:{
@@ -34,7 +43,7 @@ export const Reviews=()=>{
         },
         body:JSON.stringify(Form)
 
-    }).then((d)=>console.log(d));
+    })
 
     
   }

@@ -12,6 +12,8 @@ import { Reviews } from './components/reviews';
 import { Home } from './components/Home';
 import { Navbar } from './components/navbar';
 import { Edit } from './components/edit';
+import { ProductDetails } from './components/productdetails';
+import { Cart } from './components/cart';
 
 function App() {
  
@@ -27,6 +29,8 @@ function App() {
 <Route path='/signup' element={<Signup/>}></Route>
 <Route path='/reviews' element={<Reviews/>}></Route>
 <Route path='/edit' element={<Edit/>}></Route>
+<Route path="/:_id" element={<ProductDetails/>}></Route>
+<Route path="/cart" element={<Cart/>}></Route>
 </Routes>
 
 

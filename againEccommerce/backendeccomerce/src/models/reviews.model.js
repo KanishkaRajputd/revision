@@ -5,8 +5,8 @@ userId:[{
     ref:"myusers",
     type:mongoose.Schema.Types.ObjectId,
     required:true
-}
-],
+}]
+,
 description :{type:String ,required:true},
 rating:  {type:Number,required:true}
 

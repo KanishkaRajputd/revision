@@ -30,7 +30,7 @@ return res.status(201).send(reviews);
 router.get("/",async(req,res)=>{
 
     try{
-    const reviews=await Reviews.find().lean().exec();
+    const reviews=await Reviews.find().populate({path:"userId"}).lean().exec();
     return res.status(200).send(reviews);
     }catch(err){
         return res.status(500).send({

@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Brand=()=>{
+const [Data,setData]=useState([]);
+
+
 
 const [Form,setForm]=useState({
 
@@ -25,6 +28,9 @@ const [Form,setForm]=useState({
             [id]:value
         })
     }
+
+
+
     function handleSubmit(e){
     e.preventDefault();
     fetch("http://localhost:5000/brands",{

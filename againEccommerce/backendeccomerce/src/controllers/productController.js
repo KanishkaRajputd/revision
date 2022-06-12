@@ -18,8 +18,17 @@ return res.status(400).send({
 
 router.get("/",async(req,res)=>{
     try{
-    const user=await Product.find().lean().exec();
-        return  res.status(200).send(user);
+
+      const page=req.query.page;
+      const limit=8;
+     const skip=(page-1)*limit;
+    //  console.log(skip)
+
+   const count=await Product.find().count({});
+    const product=await Product.find().skip(skip).limit(limit).lean().exec();
+        return  res.status(200).send({product:product,
+                                        count:count    
+                                    });
     }catch(err){
     return res.status(500).send({
         statue:"failure",
@@ -29,7 +38,8 @@ router.get("/",async(req,res)=>{
     })
     router.get("/:id",async(req,res)=>{
         try{
-        const user=await Product.findById({"_id":req.params.id}).lean().exec();
+            const reviews=await  Reviews.find().populate({path:"userId"}).lean().exec();
+        const user=await Product.findById({"_id":req.params.id}).populate({path:"reviewsId"}).lean().exec();
             return  res.status(200).send(user);
         }catch(err){
         return res.status(500).send({
@@ -38,6 +48,20 @@ router.get("/",async(req,res)=>{
         })
         }
         })
+
+        // router.get("/:name",async(req,res)=>{
+        //     try{
+        //     const user=await Product.findById({"name":req.params.name}).lean().exec();
+        //         return  res.status(200).send(user);
+        //     }catch(err){
+        //     return res.status(500).send({
+        //         statue:"failure",
+        //         msg:err.message
+        //     })
+        //     }
+        //     })
+        
+
         router.patch("/:id",async(req,res)=>{
             try{
             const user=await Product.findByIdAndUpdate(req.params.id,req.body).lean().exec();
@@ -66,7 +90,7 @@ router.get("/",async(req,res)=>{
 
                 router.delete("/:id/reviews/:idx", async (req, res) => {
                     try {
-                        const review = await Reviews.findByIdAndDelete(req.params.idx);
+                        const review = await Reviews.findByIdAndDelete({_id:req.params.idx});
                         const product = await Product.findByIdAndDelete(req.params.id, { $pull: { reviewsId:req.params.idx }});
                         return res.status(200).send({ "review": review });
                     } catch (error) {
@@ -83,6 +107,5 @@ router.get("/",async(req,res)=>{
                     }
                 });
 
-
-
+           
 module.exports=router;
