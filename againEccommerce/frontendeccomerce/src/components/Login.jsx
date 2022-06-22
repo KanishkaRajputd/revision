@@ -29,14 +29,14 @@ async function handleSubmit(e){
  e.preventDefault();
 
  const data= await fetch("http://localhost:5000/users").then((d)=>d.json());
- console.log(data,Form.email,Form.passward);
+
  const data1=data.filter((a)=>{
     
       return a.email===Form.email&&a.passward===Form.passward;
      
 
  })
-console.log(data1)
+
 let arr=[];
  if(data1.length!==0){
       arr.push(data1[0]._id);

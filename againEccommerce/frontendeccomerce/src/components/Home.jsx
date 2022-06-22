@@ -36,13 +36,12 @@ for(let i=2;i<=Math.ceil(count/8);i++){
 async function handleClick(productId){
     if(!state){
     alert("Login first");
-    navigate("/login",{replace:"true"});
+    navigate("/login",{replace:true});
     
     }
 
     const userId=JSON.parse(localStorage.getItem("user"));
-    console.log(userId[0]);
-    console.log(typeof productId)
+
    await fetch(`http://localhost:5000/users/${userId[0]}/products/${productId}`,{
      method:"POST",
      headers:{
@@ -54,16 +53,16 @@ async function handleClick(productId){
 
     return (<div>
 <div style={{display:"grid",gridTemplateColumns:"10% 10% 10% 10% 10% 10% 10% 10%",gridTemplateRows:"120px",border:"1px solid white",gap:"5%",margin:"1.5%"}}>
-{Data.map((e)=>(<div style={{border:"5px solid black",borderRadius:"50%"}} >
+{Data.map((e)=>(<div key={e._id} style={{border:"5px solid black",borderRadius:"50%"}} >
 <img style={{height:"90%",width:"90%",borderRadius:"50%"}} src={e.image}/>
 <h4>{e.name}</h4>
 
 </div>))}
 </div>   
 
-<div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gridTemplateRows:"repeat(2,350px)",border:"1px solid white",gap:"5%",margin:"10% 3% 3% 3%"}}>
-{productData.map((e)=>(<div style={{border:"5px solid black"}} >
-<Link to={`/${e._id}`} > <img style={{height:"50%",width:"95%",border:"2px dotted red"}} src={e.image}/></Link>
+<div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gridTemplateRows:"repeat(2,400px)",border:"1px solid white",gap:"5%",margin:"10% 3% 3% 3%"}}>
+{productData.map((e)=>(<div key={e._id} style={{border:"5px solid black"}} >
+<Link to={`/${e._id}`} > <img style={{height:"60%",width:"95%",border:"2px dotted red"}} src={e.image}/></Link>
 
 
 
@@ -76,6 +75,6 @@ async function handleClick(productId){
 
 
     </div>
-    <div style={{fontSize:"30px",display:"flex",border:"2px solid white",margin:"5% 10% 10% 5%"}}>{arr1.map((e)=>(<div style={{cursor:"pointer",width:"35px",border:"2px dotted red",margin:"20px"}} onClick={()=>{setPage(e)}}>{e}</div>))}</div>
+    <div style={{fontSize:"30px",display:"flex",border:"2px solid white",margin:"5% 10% 10% 5%"}}>{arr1.map((e)=>(<div key={e} style={{cursor:"pointer",width:"35px",border:"2px dotted red",margin:"20px"}} onClick={()=>{setPage(e)}}>{e}</div>))}</div>
 </div>)
 }

@@ -14,7 +14,7 @@ import { Navbar } from './components/navbar';
 import { Edit } from './components/edit';
 import { ProductDetails } from './components/productdetails';
 import { Cart } from './components/cart';
-
+import { User } from './components/user';
 function App() {
  
   return (
@@ -31,6 +31,7 @@ function App() {
 <Route path='/edit' element={<Edit/>}></Route>
 <Route path="/:_id" element={<ProductDetails/>}></Route>
 <Route path="/cart" element={<Cart/>}></Route>
+<Route path="/user" element={<User/>}></Route>
 </Routes>
 
 

@@ -1,15 +1,17 @@
 import {useEffect, useState} from "react";
 import { useParams,useNavigate } from "react-router-dom";
 import { Reviews } from "./reviews";
-
+import { useSelector } from "react-redux";
 
 export const ProductDetails=()=>{
 
 const [rev,setrev]=useState(false);
 const [Data,setData]=useState({});
 const {_id}=useParams();
+const state=useSelector((state)=>state.state.state);
+const navigate=useNavigate();
 // const [user,setUser]=useState({});
-const navigate=useNavigate()
+
 // const [seuser,setSeeuser]=useState(false);
 let arr=[];
 
@@ -19,9 +21,11 @@ let arr=[];
     async function getData(){
    
         const data=await fetch(`http://localhost:5000/products/${_id}`).then((d)=>d.json());
-        setData(data);
-        console.log(data);    
+        setData(data);  
+        console.log(Data.size.join(",")); 
+    
     }
+    
 //    async function handleuser(id){
 //     setSeeuser(!seuser);
 //      const data=await fetch(`http://localhost:5000/users/${id}`).then((d)=>d.json());
@@ -29,6 +33,24 @@ let arr=[];
 //      setUser(data); 
     
 //     }
+   async function handleClick(productId){
+    if(state==false){
+    alert("Login first");
+    navigate("/login",{replace:true});
+    
+    }else{
+    const userId=JSON.parse(localStorage.getItem("user"));
+  
+   await fetch(`http://localhost:5000/users/${userId[0]}/products/${productId}`,{
+     method:"POST",
+     headers:{
+         "content-type":"application/json"
+     },
+     body:JSON.stringify({productId})
+ });
+    }
+   }
+
     
     arr.push(_id);
    localStorage.setItem("product",JSON.stringify(arr));
@@ -37,9 +59,18 @@ let arr=[];
         <div><img src={Data.image}/></div>
         <div style={{marginLeft:"50px"}}><h2 style={{fontSize:"55px"}}>{Data.name}</h2>
         <h4> Price {Data.price}</h4>
-        <h4>Colors {Data.color.join(",")}</h4> 
-     <h4>Sizes {Data.size.join(",")}</h4>
+        {/* <select>
+<option>Sizes</option>
+{Data.size.map((e)=>(<option>{e}</option>))}
 
+        </select>
+        <select>
+<option>Colors</option>
+{Data.color.map((e)=>(<option>{e}</option>))}
+
+        </select> */}
+        <br/>
+        <button onClick={()=>{handleClick(Data._id)}}>ADD TO CART</button>
         </div>
        </div>
 
