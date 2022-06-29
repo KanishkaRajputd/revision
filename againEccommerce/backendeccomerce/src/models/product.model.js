@@ -11,11 +11,7 @@ const productSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         required:true
     },
-    reviewsId:[{
-        ref:"reviews",
-        type:mongoose.Schema.Types.ObjectId,
-        required:false
-}]
+   
 },{
     timestamps:true,
     versionKey:false

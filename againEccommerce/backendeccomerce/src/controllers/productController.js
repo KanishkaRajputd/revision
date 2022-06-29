@@ -49,17 +49,6 @@ router.get("/",async(req,res)=>{
         }
         })
 
-        // router.get("/:name",async(req,res)=>{
-        //     try{
-        //     const user=await Product.findById({"name":req.params.name}).lean().exec();
-        //         return  res.status(200).send(user);
-        //     }catch(err){
-        //     return res.status(500).send({
-        //         statue:"failure",
-        //         msg:err.message
-        //     })
-        //     }
-        //     })
         
 
         router.patch("/:id",async(req,res)=>{
@@ -74,19 +63,7 @@ router.get("/",async(req,res)=>{
             }
             });
            
-           
-            router.post("/:id/reviews",async(req,res)=>{
-                try{
-                const review=await Reviews.create(req.body);
-                const product=await Product.findByIdAndUpdate(req.params.id,{$push: { reviewsId: review._id }});
-                    return  res.status(201).send(product);
-                }catch(err){
-                return res.status(400).send({
-                    statue:"failure",
-                    msg:err.message
-                })
-                }
-                })  
+            
 
                 router.delete("/:id/reviews/:idx", async (req, res) => {
                     try {

@@ -1,8 +1,11 @@
 import { useState } from "react"
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 
 export const Reviews=()=>{
     const navigate=useNavigate();
+    const state=useSelector((s)=>s.state.state);
+    // console.log(state)
     const style1={
     
         height:"40px",
@@ -12,10 +15,12 @@ export const Reviews=()=>{
     }
 
     const user=JSON.parse(localStorage.getItem("user"));
+    const product=JSON.parse(localStorage.getItem("product"));
     const [Form,setForm]=useState({
         userId:user,
         description:"",
-        rating:""
+        rating:"",
+        productId:product
 
     })
     
@@ -26,14 +31,18 @@ export const Reviews=()=>{
             ...Form,
             [id]:value
         })
-        if(Form.userId==""){
-            alert("login first");
-            navigate("/login",{replace:true})
-        }
+        
         
     }
   function handleSubmit(e){
+
     e.preventDefault();
+
+    if(!state){
+        alert("Login First");
+        navigate("/login",{replace:true})
+
+    }
     const productId=JSON.parse(localStorage.getItem("product"));
 
     fetch(`http://localhost:5000/products/${productId}/reviews`,{

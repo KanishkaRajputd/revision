@@ -81,7 +81,19 @@ router.get("/",async(req,res)=>{
                 }
                 
                 })
-        
+                router.get("/",async(req,res)=>{
+
+                    try{
+                    const reviews=await Reviews.find({productId:req.params.productId}).lean().exec();
+                    return res.status(200).send(reviews)
+                    }catch(err){
+                        return res.status(500).send({
+                            statue:"failure",
+                            msg:err.message
+                        })
+                    }
+                    
+                    })
     
         
 module.exports=router;

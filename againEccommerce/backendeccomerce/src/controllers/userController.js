@@ -89,6 +89,7 @@ router.get("/",async(req,res)=>{
 
                 router.post("/:id/products/:idx",async(req,res)=>{
                     try{
+                        con
                     const product=await productModel.findById({_id:req.params.idx});
                     const user=await User.findByIdAndUpdate(req.params.id,{$push: { cart: product._id }});
                         return  res.status(201).send(user);

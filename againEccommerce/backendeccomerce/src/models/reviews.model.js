@@ -8,12 +8,15 @@ userId:[{
 }]
 ,
 description :{type:String ,required:true},
-rating:  {type:Number,required:true}
-
+rating:  {type:Number,required:true},
+productId:{ref:"products",
+type:mongoose.Schema.Types.ObjectId,
+required:true}
 }
 ,{
     timestamps:true,
     versionKey:false
 })
+
 
 module.exports=mongoose.model("reviews",reviewSchema);

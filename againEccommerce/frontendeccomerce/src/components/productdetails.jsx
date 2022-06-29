@@ -22,7 +22,6 @@ let arr=[];
    
         const data=await fetch(`http://localhost:5000/products/${_id}`).then((d)=>d.json());
         setData(data);  
-        console.log(Data.size.join(",")); 
     
     }
     
@@ -59,31 +58,31 @@ let arr=[];
         <div><img src={Data.image}/></div>
         <div style={{marginLeft:"50px"}}><h2 style={{fontSize:"55px"}}>{Data.name}</h2>
         <h4> Price {Data.price}</h4>
-        {/* <select>
+        <select>
 <option>Sizes</option>
-{Data.size.map((e)=>(<option>{e}</option>))}
+ {Data.size!==undefined? Data.size.map((e)=>(<option key={e}>{e}</option>)):"Loding..."}
 
         </select>
         <select>
 <option>Colors</option>
-{Data.color.map((e)=>(<option>{e}</option>))}
+{  Data.color!==undefined ? Data.color.map((e)=>(<option key={e}>{e}</option>)):"Loding..."}
 
-        </select> */}
+        </select>
         <br/>
         <button onClick={()=>{handleClick(Data._id)}}>ADD TO CART</button>
         </div>
        </div>
 
 <button onClick={()=>{setrev(!rev)}}  >{rev?"Hide Reviews":"Show Reviews"}</button>
-{rev?<div style={{margin:"5%"}}>{Data.reviewsId.map((e)=>
+{rev?<div style={{margin:"5%"}}>{Data && Data.reviewsId.map((e)=>
 (<div style={{border:"2px solid grey"}} key={e._id}>
     <h3>{e.description}</h3>
     <h4> {e.rating} ⭐️</h4>
     <h4>Date - {e.createdAt.split("T")[0]}</h4>
-    {/* <button  onClick={()=>{handleuser(e.userId)}}>{seuser?"Hide User":"Show User"}</button> */}
-    {/* {seuser?<div ><h4 style={{border:"2px dotted red"}} >{user.name}</h4>
+    <button  onClick={()=>{handleuser(e.userId)}}>{seuser?"Hide User":"Show User"}</button>
+     {seuser?<div ><h4 style={{border:"2px dotted red"}} >{user.name}</h4> 
 
-  </div>:""} */}
+  </div>:""}
     </div>))}
 </div>:""}
 
